@@ -1,2 +1,7 @@
 # hack-f6c388bf-2407
-Hackathon team repository for 2407 SE
+
+
+
+# AI Meeting Assistant
+
+### An On-Premise Intelligent System for Meeting Transcription, Speaker Diarization, Action Item Extraction, and Protocol Generation
