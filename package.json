@@ -1,0 +1,10 @@
+{
+  "name": "akim-na-5-chasov",
+  "private": true,
+  "version": "0.1.0",
+  "packageManager": "pnpm@10.15.0",
+  "scripts": {
+    "dev:web": "pnpm --filter @akim5h/web dev",
+    "build:web": "pnpm --filter @akim5h/web build"
+  }
+}

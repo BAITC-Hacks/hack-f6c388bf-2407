@@ -1,0 +1,122 @@
+openapi: 3.1.0
+info:
+  title: Akim na 5 chasov API
+  version: 0.1.0
+  description: API контракты симулятора. Числа рассчитывает backend детерминированно.
+servers:
+  - url: http://localhost:8000
+paths:
+  /api/v1/health:
+    get:
+      operationId: getHealth
+      responses:
+        '200':
+          description: API is available
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [status]
+                properties:
+                  status: { type: string, const: ok }
+  /api/v1/scenario/catalog:
+    get:
+      operationId: getScenarioCatalog
+      responses:
+        '200':
+          description: Fixed city data, budget, initiatives, and rules
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [budget, horizon_quarters, districts, indicators, initiatives, rules]
+                properties:
+                  budget: { type: integer, const: 100 }
+                  horizon_quarters: { type: integer, const: 8 }
+                  districts: { type: array, items: { type: object } }
+                  indicators: { type: array, items: { type: object } }
+                  initiatives: { type: array, items: { type: object } }
+                  rules: { type: object }
+  /api/v1/scenario/evaluate:
+    post:
+      operationId: evaluateScenario
+      summary: Validate and calculate one five-decision scenario
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScenarioRequest'
+      responses:
+        '200':
+          description: Validated scenario and deterministic score
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScenarioResult'
+        '422':
+          description: Invalid scenario; score is not calculated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+components:
+  schemas:
+    Decision:
+      type: object
+      additionalProperties: false
+      required: [initiative_id]
+      properties:
+        initiative_id: { type: string, pattern: '^M(1[0-4]|[1-9])$' }
+        district_id:
+          type: [string, 'null']
+          enum: [esil, almaty, saryarka, baikonur, nura, null]
+          description: Required for district measures; must be null/omitted for citywide measures.
+    ScenarioRequest:
+      type: object
+      additionalProperties: false
+      required: [decisions]
+      properties:
+        decisions:
+          type: array
+          minItems: 5
+          maxItems: 5
+          items: { $ref: '#/components/schemas/Decision' }
+        include_ai_analysis: { type: boolean, default: true }
+    ValidationError:
+      type: object
+      required: [code, message]
+      properties:
+        code:
+          type: string
+          enum: [wrong_decision_count, duplicate_initiative, unknown_initiative, unknown_district, district_required, district_not_allowed, budget_exceeded, domain_limit, incompatible_initiatives]
+        message: { type: string }
+        details: { type: object }
+    ScenarioResult:
+      type: object
+      required: [valid, budget, score, baseline_score, score_delta, city_score, weakest_district, critical_pairs, districts, initiative_contributions, ai_analysis]
+      properties:
+        valid: { type: boolean, const: true }
+        budget:
+          type: object
+          required: [total, spent, remaining]
+          properties:
+            total: { type: integer }
+            spent: { type: integer }
+            remaining: { type: integer }
+        score: { type: number }
+        baseline_score: { type: number, const: 52.56 }
+        score_delta: { type: number }
+        city_score: { type: number, description: Population-weighted mean of district scores before weakest-district/critical penalties. }
+        weakest_district:
+          type: object
+          required: [district_id, score]
+          properties:
+            district_id: { type: string }
+            score: { type: number }
+        critical_pairs: { type: integer, minimum: 0 }
+        districts: { type: array, items: { type: object } }
+        initiative_contributions: { type: array, items: { type: object } }
+        ai_analysis:
+          type: [object, 'null']
+          description: Explanation from configured AI provider or null when disabled/unavailable.
