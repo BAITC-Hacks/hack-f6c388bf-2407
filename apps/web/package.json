@@ -9,13 +9,17 @@
     "preview": "vite preview --host 0.0.0.0"
   },
   "dependencies": {
+    "akim-na-5-chasov": "file:../..",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "^1.61.1",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
     "@vitejs/plugin-react": "^4.7.0",
+    "prettier": "^3.9.9",
     "typescript": "~5.8.3",
     "vite": "^6.3.5"
   }

@@ -1,0 +1,13 @@
+{
+  "profile": "product-admin",
+  "sourceRoots": ["apps/web/src"],
+  "locale": "ru-RU",
+  "canonicalMap": "UX-CONTRACT.md",
+  "requiredCapabilities": ["Select/Listbox", "Form", "Scrollbar", "Toast"],
+  "ownership": { "Select/Listbox": "native" },
+  "requiredCommands": ["build", "design"],
+  "commands": {
+    "build": "npm run build --prefix apps/web",
+    "design": "node scripts/check-design.mjs"
+  }
+}

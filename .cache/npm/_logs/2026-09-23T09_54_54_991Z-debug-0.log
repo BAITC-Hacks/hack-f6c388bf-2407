@@ -1,0 +1,59 @@
+0 verbose cli C:\nvm4w\nodejs\node.exe C:\nvm4w\nodejs\node_modules\npm\bin\npm-cli.js
+1 info using npm@10.8.2
+2 info using node@v18.20.8
+3 silly config load:file:C:\Users\abola\AppData\Local\nvm\v18.20.8\node_modules\npm\npmrc
+4 silly config load:file:C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\.npmrc
+5 silly config load:file:C:\Users\abola\.npmrc
+6 silly config load:file:C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\etc\npmrc
+7 verbose title npm install
+8 verbose argv "install" "--prefix" "apps/web" "--cache" ".cache/npm"
+9 verbose logfile logs-max:10 dir:C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\.cache\npm\_logs\2026-09-23T09_54_54_991Z-
+10 verbose logfile C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\.cache\npm\_logs\2026-09-23T09_54_54_991Z-debug-0.log
+11 silly packumentCache heap:2197815296 maxSize:549453824 maxEntrySize:274726912
+12 silly logfile done cleaning log files
+13 http fetch GET https://registry.npmjs.org/npm attempt 1 failed with ECONNREFUSED
+14 silly idealTree buildDeps
+15 silly fetch manifest react@^19.1.0
+16 silly packumentCache full:https://registry.npmjs.org/react cache-miss
+17 silly fetch manifest react-dom@^19.1.0
+18 silly packumentCache full:https://registry.npmjs.org/react-dom cache-miss
+19 silly fetch manifest @types/react@^19.1.0
+20 silly packumentCache full:https://registry.npmjs.org/@types%2freact cache-miss
+21 silly fetch manifest @types/react-dom@^19.1.0
+22 silly packumentCache full:https://registry.npmjs.org/@types%2freact-dom cache-miss
+23 silly fetch manifest @vitejs/plugin-react@^4.7.0
+24 silly packumentCache full:https://registry.npmjs.org/@vitejs%2fplugin-react cache-miss
+25 silly fetch manifest typescript@~5.8.3
+26 silly packumentCache full:https://registry.npmjs.org/typescript cache-miss
+27 silly fetch manifest vite@^6.3.5
+28 silly packumentCache full:https://registry.npmjs.org/vite cache-miss
+29 silly placeDep ROOT @types/react@ OK for: @akim5h/web@0.1.0 want: ^19.1.0
+30 silly placeDep ROOT @types/react-dom@ OK for: @akim5h/web@0.1.0 want: ^19.1.0
+31 silly placeDep ROOT @vitejs/plugin-react@ OK for: @akim5h/web@0.1.0 want: ^4.7.0
+32 silly placeDep ROOT akim-na-5-chasov@0.1.0 OK for: @akim5h/web@0.1.0 want: file:../..
+33 silly placeDep ROOT react@ OK for: @akim5h/web@0.1.0 want: ^19.1.0
+34 silly placeDep ROOT react-dom@ OK for: @akim5h/web@0.1.0 want: ^19.1.0
+35 silly placeDep ROOT typescript@ OK for: @akim5h/web@0.1.0 want: ~5.8.3
+36 silly placeDep ROOT vite@ OK for: @akim5h/web@0.1.0 want: ^6.3.5
+37 verbose stack Error: request to https://registry.npmjs.org/@types%2freact failed: cache mode is 'only-if-cached' but no cached response is available.
+37 verbose stack     at cacheFetch (C:\Users\abola\AppData\Local\nvm\v18.20.8\node_modules\npm\node_modules\make-fetch-happen\lib\cache\index.js:12:13)
+37 verbose stack     at async fetch (C:\Users\abola\AppData\Local\nvm\v18.20.8\node_modules\npm\node_modules\make-fetch-happen\lib\fetch.js:98:7)
+37 verbose stack     at async RegistryFetcher.packument (C:\Users\abola\AppData\Local\nvm\v18.20.8\node_modules\npm\node_modules\pacote\lib\registry.js:90:19)
+37 verbose stack     at async RegistryFetcher.manifest (C:\Users\abola\AppData\Local\nvm\v18.20.8\node_modules\npm\node_modules\pacote\lib\registry.js:128:23)
+37 verbose stack     at async #fetchManifest (C:\Users\abola\AppData\Local\nvm\v18.20.8\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\build-ideal-tree.js:1199:20)
+37 verbose stack     at async #nodeFromEdge (C:\Users\abola\AppData\Local\nvm\v18.20.8\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\build-ideal-tree.js:1037:19)
+37 verbose stack     at async #buildDepStep (C:\Users\abola\AppData\Local\nvm\v18.20.8\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\build-ideal-tree.js:901:11)
+37 verbose stack     at async Arborist.buildIdealTree (C:\Users\abola\AppData\Local\nvm\v18.20.8\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\build-ideal-tree.js:181:7)
+37 verbose stack     at async Promise.all (index 1)
+37 verbose stack     at async Arborist.reify (C:\Users\abola\AppData\Local\nvm\v18.20.8\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:131:5)
+38 error code ENOTCACHED
+39 error request to https://registry.npmjs.org/@types%2freact failed: cache mode is 'only-if-cached' but no cached response is available.
+40 silly unfinished npm timer reify 1790157297323
+41 silly unfinished npm timer reify:loadTrees 1790157297361
+42 verbose cwd C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407
+43 verbose os Windows_NT 10.0.26200
+44 verbose node v18.20.8
+45 verbose npm  v10.8.2
+46 verbose exit 1
+47 verbose code 1
+48 error A complete log of this run can be found in: C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\.cache\npm\_logs\2026-09-23T09_54_54_991Z-debug-0.log

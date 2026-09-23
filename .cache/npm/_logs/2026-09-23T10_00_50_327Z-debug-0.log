@@ -1,0 +1,460 @@
+0 verbose cli C:\nvm4w\nodejs\node.exe C:\nvm4w\nodejs\node_modules\npm\bin\npm-cli.js
+1 info using npm@10.8.2
+2 info using node@v18.20.8
+3 silly config load:file:C:\Users\abola\AppData\Local\nvm\v18.20.8\node_modules\npm\npmrc
+4 silly config load:file:C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\.npmrc
+5 silly config load:file:C:\Users\abola\.npmrc
+6 silly config load:file:C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\etc\npmrc
+7 verbose title npm install @playwright/test @axe-core/playwright prettier
+8 verbose argv "install" "--prefix" "apps/web" "--save-dev" "@playwright/test" "@axe-core/playwright" "prettier" "--cache" ".cache/npm" "--offline" "false"
+9 verbose logfile logs-max:10 dir:C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\.cache\npm\_logs\2026-09-23T10_00_50_327Z-
+10 verbose logfile C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\.cache\npm\_logs\2026-09-23T10_00_50_327Z-debug-0.log
+11 silly packumentCache heap:2197815296 maxSize:549453824 maxEntrySize:274726912
+12 silly logfile done cleaning log files
+13 silly idealTree buildDeps
+14 silly fetch manifest @playwright/test@*
+15 silly packumentCache full:https://registry.npmjs.org/@playwright%2ftest cache-miss
+16 verbose shrinkwrap failed to load node_modules/.package-lock.json out of date, updated: ../..
+17 http fetch GET 200 https://registry.npmjs.org/@playwright%2ftest 959ms (cache miss)
+18 silly packumentCache full:https://registry.npmjs.org/@playwright%2ftest set size:undefined disposed:false
+19 silly fetch manifest @axe-core/playwright@*
+20 silly packumentCache full:https://registry.npmjs.org/@axe-core%2fplaywright cache-miss
+21 http fetch GET 200 https://registry.npmjs.org/@axe-core%2fplaywright 284ms (cache miss)
+22 silly packumentCache full:https://registry.npmjs.org/@axe-core%2fplaywright set size:undefined disposed:false
+23 silly fetch manifest playwright-core@>= 1.0.0
+24 silly packumentCache full:https://registry.npmjs.org/playwright-core cache-miss
+25 http fetch GET 200 https://registry.npmjs.org/playwright-core 803ms (cache miss)
+26 silly packumentCache full:https://registry.npmjs.org/playwright-core set size:undefined disposed:false
+27 silly fetch manifest prettier@*
+28 silly packumentCache full:https://registry.npmjs.org/prettier cache-miss
+29 http fetch GET 200 https://registry.npmjs.org/prettier 124ms (cache miss)
+30 silly packumentCache full:https://registry.npmjs.org/prettier set size:undefined disposed:false
+31 silly placeDep ROOT @axe-core/playwright@4.13.0 OK for: @akim5h/web@0.1.0 want: *
+32 silly placeDep ROOT playwright-core@1.61.1 OK for: @axe-core/playwright@4.13.0 want: >= 1.0.0
+33 silly placeDep ROOT @playwright/test@1.61.1 OK for: @akim5h/web@0.1.0 want: *
+34 silly placeDep ROOT prettier@3.9.9 OK for: @akim5h/web@0.1.0 want: *
+35 silly fetch manifest axe-core@~4.13.0
+36 silly packumentCache full:https://registry.npmjs.org/axe-core cache-miss
+37 silly fetch manifest playwright@1.61.1
+38 silly packumentCache full:https://registry.npmjs.org/playwright cache-miss
+39 http fetch GET 200 https://registry.npmjs.org/axe-core 691ms (cache miss)
+40 silly packumentCache full:https://registry.npmjs.org/axe-core set size:undefined disposed:false
+41 http fetch GET 200 https://registry.npmjs.org/playwright 1202ms (cache miss)
+42 silly packumentCache full:https://registry.npmjs.org/playwright set size:undefined disposed:false
+43 silly placeDep ROOT axe-core@4.13.0 OK for: @axe-core/playwright@4.13.0 want: ~4.13.0
+44 silly placeDep ROOT playwright@1.61.1 OK for: @playwright/test@1.61.1 want: 1.61.1
+45 silly fetch manifest fsevents@2.3.2
+46 silly packumentCache full:https://registry.npmjs.org/fsevents cache-miss
+47 http fetch GET 200 https://registry.npmjs.org/fsevents 111ms (cache revalidated)
+48 silly packumentCache full:https://registry.npmjs.org/fsevents set size:182472 disposed:false
+49 silly placeDep node_modules/playwright fsevents@2.3.2 OK for: playwright@1.61.1 want: 2.3.2
+50 silly reify moves {}
+51 silly audit bulk request {
+51 silly audit   'akim-na-5-chasov': [ '0.1.0' ],
+51 silly audit   '@babel/code-frame': [ '7.29.7' ],
+51 silly audit   '@babel/compat-data': [ '7.29.7' ],
+51 silly audit   '@babel/core': [ '7.29.7' ],
+51 silly audit   '@babel/generator': [ '7.29.8' ],
+51 silly audit   '@babel/helper-compilation-targets': [ '7.29.7' ],
+51 silly audit   '@babel/helper-globals': [ '7.29.7' ],
+51 silly audit   '@babel/helper-module-imports': [ '7.29.7' ],
+51 silly audit   '@babel/helper-module-transforms': [ '7.29.7' ],
+51 silly audit   '@babel/helper-plugin-utils': [ '7.29.7' ],
+51 silly audit   '@babel/helper-string-parser': [ '7.29.7' ],
+51 silly audit   '@babel/helper-validator-identifier': [ '7.29.7' ],
+51 silly audit   '@babel/helper-validator-option': [ '7.29.7' ],
+51 silly audit   '@babel/helpers': [ '7.29.7' ],
+51 silly audit   '@babel/parser': [ '7.29.9' ],
+51 silly audit   '@babel/plugin-transform-react-jsx-self': [ '7.29.7' ],
+51 silly audit   '@babel/plugin-transform-react-jsx-source': [ '7.29.7' ],
+51 silly audit   '@babel/template': [ '7.29.7' ],
+51 silly audit   '@babel/traverse': [ '7.29.8' ],
+51 silly audit   '@babel/types': [ '7.29.8' ],
+51 silly audit   '@esbuild/aix-ppc64': [ '0.25.12' ],
+51 silly audit   '@esbuild/android-arm': [ '0.25.12' ],
+51 silly audit   '@esbuild/android-arm64': [ '0.25.12' ],
+51 silly audit   '@esbuild/android-x64': [ '0.25.12' ],
+51 silly audit   '@esbuild/darwin-arm64': [ '0.25.12' ],
+51 silly audit   '@esbuild/darwin-x64': [ '0.25.12' ],
+51 silly audit   '@esbuild/freebsd-arm64': [ '0.25.12' ],
+51 silly audit   '@esbuild/freebsd-x64': [ '0.25.12' ],
+51 silly audit   '@esbuild/linux-arm': [ '0.25.12' ],
+51 silly audit   '@esbuild/linux-arm64': [ '0.25.12' ],
+51 silly audit   '@esbuild/linux-ia32': [ '0.25.12' ],
+51 silly audit   '@esbuild/linux-loong64': [ '0.25.12' ],
+51 silly audit   '@esbuild/linux-mips64el': [ '0.25.12' ],
+51 silly audit   '@esbuild/linux-ppc64': [ '0.25.12' ],
+51 silly audit   '@esbuild/linux-riscv64': [ '0.25.12' ],
+51 silly audit   '@esbuild/linux-s390x': [ '0.25.12' ],
+51 silly audit   '@esbuild/linux-x64': [ '0.25.12' ],
+51 silly audit   '@esbuild/netbsd-arm64': [ '0.25.12' ],
+51 silly audit   '@esbuild/netbsd-x64': [ '0.25.12' ],
+51 silly audit   '@esbuild/openbsd-arm64': [ '0.25.12' ],
+51 silly audit   '@esbuild/openbsd-x64': [ '0.25.12' ],
+51 silly audit   '@esbuild/openharmony-arm64': [ '0.25.12' ],
+51 silly audit   '@esbuild/sunos-x64': [ '0.25.12' ],
+51 silly audit   '@esbuild/win32-arm64': [ '0.25.12' ],
+51 silly audit   '@esbuild/win32-ia32': [ '0.25.12' ],
+51 silly audit   '@esbuild/win32-x64': [ '0.25.12' ],
+51 silly audit   '@jridgewell/gen-mapping': [ '0.3.13' ],
+51 silly audit   '@jridgewell/remapping': [ '2.3.5' ],
+51 silly audit   '@jridgewell/resolve-uri': [ '3.1.2' ],
+51 silly audit   '@jridgewell/sourcemap-codec': [ '1.6.0' ],
+51 silly audit   '@jridgewell/trace-mapping': [ '0.3.31' ],
+51 silly audit   '@napi-rs/lzma-linux-x64-gnu': [ '1.5.1' ],
+51 silly audit   '@rolldown/pluginutils': [ '1.0.0-beta.27' ],
+51 silly audit   '@rollup/rollup-android-arm-eabi': [ '4.63.4' ],
+51 silly audit   '@rollup/rollup-android-arm64': [ '4.63.4' ],
+51 silly audit   '@rollup/rollup-darwin-arm64': [ '4.63.4' ],
+51 silly audit   '@rollup/rollup-darwin-x64': [ '4.63.4' ],
+51 silly audit   '@rollup/rollup-freebsd-arm64': [ '4.63.4' ],
+51 silly audit   '@rollup/rollup-freebsd-x64': [ '4.63.4' ],
+51 silly audit   '@rollup/rollup-linux-arm-gnueabihf': [ '4.63.4' ],
+51 silly audit   '@rollup/rollup-linux-arm-musleabihf': [ '4.63.4' ],
+51 silly audit   '@rollup/rollup-linux-arm64-gnu': [ '4.63.4' ],
+51 silly audit   '@rollup/rollup-linux-arm64-musl': [ '4.63.4' ],
+51 silly audit   '@rollup/rollup-linux-loong64-gnu': [ '4.63.4' ],
+51 silly audit   '@rollup/rollup-linux-loong64-musl': [ '4.63.4' ],
+51 silly audit   '@rollup/rollup-linux-ppc64-gnu': [ '4.63.4' ],
+51 silly audit   '@rollup/rollup-linux-ppc64-musl': [ '4.63.4' ],
+51 silly audit   '@rollup/rollup-linux-riscv64-gnu': [ '4.63.4' ],
+51 silly audit   '@rollup/rollup-linux-riscv64-musl': [ '4.63.4' ],
+51 silly audit   '@rollup/rollup-linux-s390x-gnu': [ '4.63.4' ],
+51 silly audit   '@rollup/rollup-linux-x64-gnu': [ '4.63.4' ],
+51 silly audit   '@rollup/rollup-linux-x64-musl': [ '4.63.4' ],
+51 silly audit   '@rollup/rollup-openbsd-x64': [ '4.63.4' ],
+51 silly audit   '@rollup/rollup-openharmony-arm64': [ '4.63.4' ],
+51 silly audit   '@rollup/rollup-win32-arm64-msvc': [ '4.63.4' ],
+51 silly audit   '@rollup/rollup-win32-ia32-msvc': [ '4.63.4' ],
+51 silly audit   '@rollup/rollup-win32-x64-gnu': [ '4.63.4' ],
+51 silly audit   '@rollup/rollup-win32-x64-msvc': [ '4.63.4' ],
+51 silly audit   '@types/babel__core': [ '7.20.5' ],
+51 silly audit   '@types/babel__generator': [ '7.27.0' ],
+51 silly audit   '@types/babel__template': [ '7.4.4' ],
+51 silly audit   '@types/babel__traverse': [ '7.28.0' ],
+51 silly audit   '@types/estree': [ '1.0.9' ],
+51 silly audit   '@types/react': [ '19.3.0' ],
+51 silly audit   '@types/react-dom': [ '19.3.0' ],
+51 silly audit   '@vitejs/plugin-react': [ '4.7.0' ],
+51 silly audit   'baseline-browser-mapping': [ '2.11.25' ],
+51 silly audit   browserslist: [ '4.29.0' ],
+51 silly audit   'caniuse-lite': [ '1.0.30001810' ],
+51 silly audit   'convert-source-map': [ '2.0.0' ],
+51 silly audit   csstype: [ '3.2.3' ],
+51 silly audit   debug: [ '4.4.3' ],
+51 silly audit   'electron-to-chromium': [ '1.5.437' ],
+51 silly audit   esbuild: [ '0.25.12' ],
+51 silly audit   escalade: [ '3.2.0' ],
+51 silly audit   fdir: [ '6.5.0' ],
+51 silly audit   fsevents: [ '2.3.3', '2.3.2' ],
+51 silly audit   gensync: [ '1.0.0-beta.2' ],
+51 silly audit   'js-tokens': [ '4.0.0' ],
+51 silly audit   jsesc: [ '3.1.0' ],
+51 silly audit   json5: [ '2.2.3' ],
+51 silly audit   'lru-cache': [ '5.1.1' ],
+51 silly audit   ms: [ '2.1.3' ],
+51 silly audit   nanoid: [ '3.3.19' ],
+51 silly audit   'node-releases': [ '2.0.57' ],
+51 silly audit   picocolors: [ '1.1.1' ],
+51 silly audit   picomatch: [ '4.0.7' ],
+51 silly audit   postcss: [ '8.5.28' ],
+51 silly audit   react: [ '19.3.0' ],
+51 silly audit   'react-dom': [ '19.3.0' ],
+51 silly audit   'react-refresh': [ '0.17.0' ],
+51 silly audit   rollup: [ '4.63.4' ],
+51 silly audit   scheduler: [ '0.28.0' ],
+51 silly audit   semver: [ '6.3.1' ],
+51 silly audit   'source-map-js': [ '1.2.1' ],
+51 silly audit   tinyglobby: [ '0.2.17' ],
+51 silly audit   typescript: [ '5.8.3' ],
+51 silly audit   'update-browserslist-db': [ '1.3.3' ],
+51 silly audit   vite: [ '6.4.3' ],
+51 silly audit   yallist: [ '3.1.1' ],
+51 silly audit   '@axe-core/playwright': [ '4.13.0' ],
+51 silly audit   'playwright-core': [ '1.61.1' ],
+51 silly audit   '@playwright/test': [ '1.61.1' ],
+51 silly audit   prettier: [ '3.9.9' ],
+51 silly audit   'axe-core': [ '4.13.0' ],
+51 silly audit   playwright: [ '1.61.1' ]
+51 silly audit }
+52 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\playwright\node_modules\fsevents
+53 silly reify mark deleted [
+53 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\playwright\\node_modules\\fsevents'
+53 silly reify ]
+54 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\fsevents
+55 silly reify mark deleted [
+55 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\fsevents'
+55 silly reify ]
+56 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\@rollup\rollup-win32-ia32-msvc
+57 silly reify mark deleted [
+57 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\@rollup\\rollup-win32-ia32-msvc'
+57 silly reify ]
+58 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\@rollup\rollup-win32-arm64-msvc
+59 silly reify mark deleted [
+59 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\@rollup\\rollup-win32-arm64-msvc'
+59 silly reify ]
+60 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\@rollup\rollup-openharmony-arm64
+61 silly reify mark deleted [
+61 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\@rollup\\rollup-openharmony-arm64'
+61 silly reify ]
+62 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\@rollup\rollup-openbsd-x64
+63 silly reify mark deleted [
+63 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\@rollup\\rollup-openbsd-x64'
+63 silly reify ]
+64 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\@rollup\rollup-linux-x64-musl
+65 silly reify mark deleted [
+65 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\@rollup\\rollup-linux-x64-musl'
+65 silly reify ]
+66 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\@rollup\rollup-linux-x64-gnu
+67 silly reify mark deleted [
+67 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\@rollup\\rollup-linux-x64-gnu'
+67 silly reify ]
+68 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\@rollup\rollup-linux-s390x-gnu
+69 silly reify mark deleted [
+69 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\@rollup\\rollup-linux-s390x-gnu'
+69 silly reify ]
+70 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\@rollup\rollup-linux-riscv64-musl
+71 silly reify mark deleted [
+71 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\@rollup\\rollup-linux-riscv64-musl'
+71 silly reify ]
+72 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\@rollup\rollup-linux-riscv64-gnu
+73 silly reify mark deleted [
+73 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\@rollup\\rollup-linux-riscv64-gnu'
+73 silly reify ]
+74 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\@rollup\rollup-linux-ppc64-musl
+75 silly reify mark deleted [
+75 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\@rollup\\rollup-linux-ppc64-musl'
+75 silly reify ]
+76 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\@rollup\rollup-linux-ppc64-gnu
+77 silly reify mark deleted [
+77 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\@rollup\\rollup-linux-ppc64-gnu'
+77 silly reify ]
+78 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\@rollup\rollup-linux-loong64-musl
+79 silly reify mark deleted [
+79 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\@rollup\\rollup-linux-loong64-musl'
+79 silly reify ]
+80 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\@rollup\rollup-linux-loong64-gnu
+81 silly reify mark deleted [
+81 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\@rollup\\rollup-linux-loong64-gnu'
+81 silly reify ]
+82 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\@rollup\rollup-linux-arm64-musl
+83 silly reify mark deleted [
+83 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\@rollup\\rollup-linux-arm64-musl'
+83 silly reify ]
+84 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\@rollup\rollup-linux-arm64-gnu
+85 silly reify mark deleted [
+85 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\@rollup\\rollup-linux-arm64-gnu'
+85 silly reify ]
+86 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\@rollup\rollup-linux-arm-musleabihf
+87 silly reify mark deleted [
+87 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\@rollup\\rollup-linux-arm-musleabihf'
+87 silly reify ]
+88 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\@rollup\rollup-linux-arm-gnueabihf
+89 silly reify mark deleted [
+89 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\@rollup\\rollup-linux-arm-gnueabihf'
+89 silly reify ]
+90 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\@rollup\rollup-freebsd-x64
+91 silly reify mark deleted [
+91 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\@rollup\\rollup-freebsd-x64'
+91 silly reify ]
+92 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\@rollup\rollup-freebsd-arm64
+93 silly reify mark deleted [
+93 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\@rollup\\rollup-freebsd-arm64'
+93 silly reify ]
+94 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\@rollup\rollup-darwin-x64
+95 silly reify mark deleted [
+95 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\@rollup\\rollup-darwin-x64'
+95 silly reify ]
+96 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\@rollup\rollup-darwin-arm64
+97 silly reify mark deleted [
+97 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\@rollup\\rollup-darwin-arm64'
+97 silly reify ]
+98 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\@rollup\rollup-android-arm64
+99 silly reify mark deleted [
+99 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\@rollup\\rollup-android-arm64'
+99 silly reify ]
+100 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\@rollup\rollup-android-arm-eabi
+101 silly reify mark deleted [
+101 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\@rollup\\rollup-android-arm-eabi'
+101 silly reify ]
+102 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\@napi-rs\lzma-linux-x64-gnu
+103 silly reify mark deleted [
+103 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\@napi-rs\\lzma-linux-x64-gnu'
+103 silly reify ]
+104 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\@esbuild\win32-ia32
+105 silly reify mark deleted [
+105 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\@esbuild\\win32-ia32'
+105 silly reify ]
+106 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\@esbuild\win32-arm64
+107 silly reify mark deleted [
+107 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\@esbuild\\win32-arm64'
+107 silly reify ]
+108 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\@esbuild\sunos-x64
+109 silly reify mark deleted [
+109 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\@esbuild\\sunos-x64'
+109 silly reify ]
+110 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\@esbuild\openharmony-arm64
+111 silly reify mark deleted [
+111 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\@esbuild\\openharmony-arm64'
+111 silly reify ]
+112 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\@esbuild\openbsd-x64
+113 silly reify mark deleted [
+113 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\@esbuild\\openbsd-x64'
+113 silly reify ]
+114 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\@esbuild\openbsd-arm64
+115 silly reify mark deleted [
+115 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\@esbuild\\openbsd-arm64'
+115 silly reify ]
+116 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\@esbuild\netbsd-x64
+117 silly reify mark deleted [
+117 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\@esbuild\\netbsd-x64'
+117 silly reify ]
+118 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\@esbuild\netbsd-arm64
+119 silly reify mark deleted [
+119 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\@esbuild\\netbsd-arm64'
+119 silly reify ]
+120 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\@esbuild\linux-x64
+121 silly reify mark deleted [
+121 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\@esbuild\\linux-x64'
+121 silly reify ]
+122 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\@esbuild\linux-s390x
+123 silly reify mark deleted [
+123 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\@esbuild\\linux-s390x'
+123 silly reify ]
+124 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\@esbuild\linux-riscv64
+125 silly reify mark deleted [
+125 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\@esbuild\\linux-riscv64'
+125 silly reify ]
+126 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\@esbuild\linux-ppc64
+127 silly reify mark deleted [
+127 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\@esbuild\\linux-ppc64'
+127 silly reify ]
+128 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\@esbuild\linux-mips64el
+129 silly reify mark deleted [
+129 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\@esbuild\\linux-mips64el'
+129 silly reify ]
+130 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\@esbuild\linux-loong64
+131 silly reify mark deleted [
+131 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\@esbuild\\linux-loong64'
+131 silly reify ]
+132 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\@esbuild\linux-ia32
+133 silly reify mark deleted [
+133 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\@esbuild\\linux-ia32'
+133 silly reify ]
+134 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\@esbuild\linux-arm64
+135 silly reify mark deleted [
+135 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\@esbuild\\linux-arm64'
+135 silly reify ]
+136 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\@esbuild\linux-arm
+137 silly reify mark deleted [
+137 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\@esbuild\\linux-arm'
+137 silly reify ]
+138 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\@esbuild\freebsd-x64
+139 silly reify mark deleted [
+139 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\@esbuild\\freebsd-x64'
+139 silly reify ]
+140 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\@esbuild\freebsd-arm64
+141 silly reify mark deleted [
+141 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\@esbuild\\freebsd-arm64'
+141 silly reify ]
+142 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\@esbuild\darwin-x64
+143 silly reify mark deleted [
+143 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\@esbuild\\darwin-x64'
+143 silly reify ]
+144 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\@esbuild\darwin-arm64
+145 silly reify mark deleted [
+145 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\@esbuild\\darwin-arm64'
+145 silly reify ]
+146 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\@esbuild\android-x64
+147 silly reify mark deleted [
+147 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\@esbuild\\android-x64'
+147 silly reify ]
+148 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\@esbuild\android-arm64
+149 silly reify mark deleted [
+149 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\@esbuild\\android-arm64'
+149 silly reify ]
+150 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\@esbuild\android-arm
+151 silly reify mark deleted [
+151 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\@esbuild\\android-arm'
+151 silly reify ]
+152 verbose reify failed optional dependency C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407\apps\web\node_modules\@esbuild\aix-ppc64
+153 silly reify mark deleted [
+153 silly reify   'C:\\Users\\abola\\OneDrive\\Рабочий стол\\hackalemai\\hack-f6c388bf-2407\\apps\\web\\node_modules\\@esbuild\\aix-ppc64'
+153 silly reify ]
+154 silly tarball no local data for playwright@https://registry.npmjs.org/playwright/-/playwright-1.61.1.tgz. Extracting by manifest.
+155 silly tarball no local data for prettier@https://registry.npmjs.org/prettier/-/prettier-3.9.9.tgz. Extracting by manifest.
+156 silly tarball no local data for @playwright/test@https://registry.npmjs.org/@playwright/test/-/test-1.61.1.tgz. Extracting by manifest.
+157 silly tarball no local data for axe-core@https://registry.npmjs.org/axe-core/-/axe-core-4.13.0.tgz. Extracting by manifest.
+158 silly tarball no local data for @axe-core/playwright@https://registry.npmjs.org/@axe-core/playwright/-/playwright-4.13.0.tgz. Extracting by manifest.
+159 silly tarball no local data for playwright-core@https://registry.npmjs.org/playwright-core/-/playwright-core-1.61.1.tgz. Extracting by manifest.
+160 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 312ms
+161 silly audit report {}
+162 http fetch GET 200 https://registry.npmjs.org/@axe-core/playwright/-/playwright-4.13.0.tgz 404ms (cache miss)
+163 http fetch GET 200 https://registry.npmjs.org/@playwright/test/-/test-1.61.1.tgz 419ms (cache miss)
+164 http fetch GET 200 https://registry.npmjs.org/playwright/-/playwright-1.61.1.tgz 853ms (cache miss)
+165 http fetch GET 200 https://registry.npmjs.org/axe-core/-/axe-core-4.13.0.tgz 904ms (cache miss)
+166 http fetch GET 200 https://registry.npmjs.org/prettier/-/prettier-3.9.9.tgz 1350ms (cache miss)
+167 http fetch GET 200 https://registry.npmjs.org/playwright-core/-/playwright-core-1.61.1.tgz 1533ms (cache miss)
+168 silly ADD node_modules/playwright
+169 silly ADD
+170 silly ADD node_modules/axe-core
+171 silly ADD node_modules/prettier
+172 silly ADD node_modules/@playwright/test
+173 silly ADD node_modules/playwright-core
+174 silly ADD node_modules/@axe-core/playwright
+175 silly ADD
+176 silly ADD
+177 silly ADD
+178 silly ADD
+179 silly ADD
+180 silly ADD
+181 silly ADD
+182 silly ADD
+183 silly ADD
+184 silly ADD
+185 silly ADD
+186 silly ADD
+187 silly ADD
+188 silly ADD
+189 silly ADD
+190 silly ADD
+191 silly ADD
+192 silly ADD
+193 silly ADD
+194 silly ADD
+195 silly ADD
+196 silly ADD
+197 silly ADD
+198 silly ADD
+199 silly ADD
+200 silly ADD
+201 silly ADD
+202 silly ADD
+203 silly ADD
+204 silly ADD
+205 silly ADD
+206 silly ADD
+207 silly ADD
+208 silly ADD
+209 silly ADD
+210 silly ADD
+211 silly ADD
+212 silly ADD
+213 silly ADD
+214 silly ADD
+215 silly ADD
+216 silly ADD
+217 silly ADD
+218 silly ADD
+219 silly ADD
+220 silly ADD
+221 silly ADD
+222 silly ADD
+223 silly ADD
+224 silly ADD
+225 verbose cwd C:\Users\abola\OneDrive\Рабочий стол\hackalemai\hack-f6c388bf-2407
+226 verbose os Windows_NT 10.0.26200
+227 verbose node v18.20.8
+228 verbose npm  v10.8.2
+229 verbose exit 0
+230 info ok
