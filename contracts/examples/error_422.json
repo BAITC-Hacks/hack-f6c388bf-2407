@@ -1,0 +1,8 @@
+{
+  "code": "domain_limit",
+  "message": "Не более двух мер одного направления.",
+  "details": {
+    "domain": "social",
+    "limit": 2
+  }
+}

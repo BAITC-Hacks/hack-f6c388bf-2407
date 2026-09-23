@@ -13,6 +13,10 @@ dependencies = [
   "pydantic-settings>=2.7,<3.0"
 ]
 
+[project.optional-dependencies]
+ai = ["openai>=2.0,<3.0"]
+test = ["jsonschema>=4.23,<5.0", "PyYAML>=6.0,<7.0"]
+
 [tool.hatch.build.targets.wheel]
 packages = ["src/akim_api"]
 
