@@ -29,7 +29,7 @@ paths:
             application/json:
               schema:
                 type: object
-                required: [budget, horizon_quarters, districts, indicators, initiatives, rules]
+                required: [budget, horizon_quarters, districts, indicators, initiatives, rules, baseline_result]
                 properties:
                   budget: { type: integer, const: 100 }
                   horizon_quarters: { type: integer, const: 8 }
@@ -37,6 +37,30 @@ paths:
                   indicators: { type: array, items: { type: object } }
                   initiatives: { type: array, items: { type: object } }
                   rules: { type: object }
+                  baseline_result: { $ref: '#/components/schemas/PreviewResult' }
+  /api/v1/scenario/preview:
+    post:
+      operationId: previewScenario
+      summary: Validate partial choices and calculate a provisional result
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PreviewRequest'
+      responses:
+        '200':
+          description: Provisional calculation and per-option eligibility
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PreviewResult'
+        '422':
+          description: A selected choice violates a scenario rule
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
   /api/v1/scenario/evaluate:
     post:
       operationId: evaluateScenario
@@ -105,27 +129,94 @@ components:
           maxItems: 5
           items: { $ref: '#/components/schemas/Decision' }
         include_ai_analysis: { type: boolean, default: true }
+    PreviewRequest:
+      type: object
+      additionalProperties: false
+      required: [decisions]
+      properties:
+        decisions:
+          type: array
+          maxItems: 5
+          description: Draft may contain zero to five choices; all other rules are checked.
+          items: { $ref: '#/components/schemas/Decision' }
     ValidationError:
       type: object
       required: [code, message]
       properties:
         code:
           type: string
-          enum: [wrong_decision_count, duplicate_initiative, unknown_initiative, unknown_district, district_required, district_not_allowed, budget_exceeded, domain_limit, incompatible_initiatives]
+          enum: [invalid_request, wrong_decision_count, duplicate_initiative, unknown_initiative, unknown_district, district_required, district_not_allowed, budget_exceeded, domain_limit, incompatible_initiatives]
         message: { type: string }
         details: { type: object }
+    Budget:
+      type: object
+      required: [total, spent, remaining]
+      properties:
+        total: { type: integer }
+        spent: { type: integer }
+        remaining: { type: integer }
+    DistrictMetrics:
+      type: object
+      required: [id, name_ru, population_share, indicators, score, baseline_score, delta]
+      properties:
+        id: { type: string, enum: [esil, almaty, saryarka, baikonur, nura] }
+        district_id: { type: string, enum: [esil, almaty, saryarka, baikonur, nura] }
+        name_ru: { type: string }
+        population_share: { type: number, minimum: 0, maximum: 1 }
+        profile_ru: { type: string }
+        indicators: { type: object, additionalProperties: { type: number, minimum: 0, maximum: 100 } }
+        before: { type: object, additionalProperties: { type: number, minimum: 0, maximum: 100 } }
+        after: { type: object, additionalProperties: { type: number, minimum: 0, maximum: 100 } }
+        score: { type: number, minimum: 0, maximum: 100 }
+        baseline_score: { type: number, minimum: 0, maximum: 100 }
+        delta: { type: number }
+    InitiativeContribution:
+      type: object
+      required: [initiative_id, district_id, realized_effects]
+      properties:
+        initiative_id: { type: string }
+        district_id: { type: [string, 'null'] }
+        name_ru: { type: string }
+        domain: { type: string }
+        cost: { type: integer }
+        realized_effects: { type: object, additionalProperties: { type: number } }
+    Synergy:
+      type: object
+      required: [initiatives, district_id, indicator, value]
+      properties:
+        initiatives: { type: array, minItems: 2, maxItems: 2, items: { type: string } }
+        district_id: { type: string }
+        indicator: { type: string }
+        value: { type: number }
+    PreviewResult:
+      type: object
+      required: [budget, projected_score, baseline_score, score_delta, city_score, weakest_district, critical_pairs, critical_indicators, districts, domain_metrics, synergies, complete, availability, replacement_availability]
+      properties:
+        budget: { $ref: '#/components/schemas/Budget' }
+        projected_score: { type: number }
+        baseline_score: { type: number }
+        score_delta: { type: number }
+        city_score: { type: number }
+        weakest_district:
+          type: object
+          required: [district_id, score]
+          properties:
+            district_id: { type: string }
+            score: { type: number }
+        critical_pairs: { type: integer, minimum: 0 }
+        critical_indicators: { type: array, items: { type: object } }
+        districts: { type: array, items: { $ref: '#/components/schemas/DistrictMetrics' } }
+        domain_metrics: { type: object, additionalProperties: { type: number, minimum: 0, maximum: 100 } }
+        synergies: { type: array, items: { $ref: '#/components/schemas/Synergy' } }
+        complete: { type: boolean }
+        availability: { type: object, additionalProperties: { type: object } }
+        replacement_availability: { type: object, additionalProperties: { type: object } }
     ScenarioResult:
       type: object
-      required: [valid, budget, score, baseline_score, score_delta, city_score, weakest_district, critical_pairs, districts, initiative_contributions, ai_analysis]
+      required: [valid, budget, score, baseline_score, score_delta, city_score, weakest_district, critical_pairs, critical_indicators, districts, domain_metrics, initiative_contributions, synergies, ai_analysis, ai_status, model_analysis]
       properties:
         valid: { type: boolean, const: true }
-        budget:
-          type: object
-          required: [total, spent, remaining]
-          properties:
-            total: { type: integer }
-            spent: { type: integer }
-            remaining: { type: integer }
+        budget: { $ref: '#/components/schemas/Budget' }
         score: { type: number }
         baseline_score: { type: number, const: 52.56 }
         score_delta: { type: number }
@@ -137,8 +228,13 @@ components:
             district_id: { type: string }
             score: { type: number }
         critical_pairs: { type: integer, minimum: 0 }
-        districts: { type: array, items: { type: object } }
-        initiative_contributions: { type: array, items: { type: object } }
+        critical_indicators: { type: array, items: { type: object } }
+        districts: { type: array, items: { $ref: '#/components/schemas/DistrictMetrics' } }
+        domain_metrics: { type: object, additionalProperties: { type: number, minimum: 0, maximum: 100 } }
+        initiative_contributions: { type: array, items: { $ref: '#/components/schemas/InitiativeContribution' } }
+        synergies: { type: array, items: { $ref: '#/components/schemas/Synergy' } }
+        ai_status: { type: string, enum: [disabled, available, unavailable] }
+        model_analysis: { $ref: '#/components/schemas/AIAnalysis' }
         ai_analysis:
           anyOf:
             - $ref: '#/components/schemas/AIAnalysis'

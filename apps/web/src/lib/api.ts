@@ -10,7 +10,10 @@ async function request<T>(path: string, signal: AbortSignal, decisions?: Decisio
     const response = await fetch(`/api/v1/scenario/${path}`, {
       method: decisions ? 'POST' : 'GET', signal: controller.signal,
       headers: decisions ? { 'Content-Type': 'application/json' } : undefined,
-      body: decisions ? JSON.stringify({ decisions, include_ai_analysis: path === 'evaluate' }) : undefined,
+      body: decisions ? JSON.stringify({
+        decisions,
+        ...(path === 'evaluate' ? { include_ai_analysis: true } : {}),
+      }) : undefined,
     });
     const body = await response.json().catch(() => null);
     if (!response.ok) throw new Error(response.status === 422 && typeof body?.message === 'string' ? body.message : 'Сервис расчёта недоступен. Ваш выбор сохранён. Попробуйте ещё раз.');

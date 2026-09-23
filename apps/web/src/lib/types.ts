@@ -6,9 +6,12 @@ export interface Initiative {
   id: string; domain: Domain; name_ru: string; scope: 'district' | 'citywide';
   cost: number; lag_quarters: number; effects: Partial<Record<IndicatorCode, number>>;
 }
-export interface District {
+export interface DistrictCatalogItem {
   id: DistrictId; name_ru: string; population_share: number; profile_ru: string;
-  indicators: Record<IndicatorCode, number>; score: number; baseline_score: number; delta: number;
+  indicators: Record<IndicatorCode, number>;
+}
+export interface District extends DistrictCatalogItem {
+  score: number; baseline_score: number; delta: number;
 }
 export interface Analysis { summary: string; strengths: string[]; risks: string[]; tradeoffs: string[]; recommendations: string[] }
 export interface Metrics {
@@ -29,7 +32,7 @@ export interface ScenarioResult extends Metrics {
   ai_status: 'disabled' | 'available' | 'unavailable'; model_analysis: Analysis;
 }
 export interface Catalog {
-  budget: number; horizon_quarters: number; districts: District[];
+  budget: number; horizon_quarters: number; districts: DistrictCatalogItem[];
   indicators: { code: IndicatorCode; domain: Domain; name_ru: string; description_ru: string }[];
   initiatives: Initiative[]; baseline_result: Preview;
   rules: { required_decision_count: number; max_per_domain: number; incompatible_pairs: { initiatives: string[]; scope: string; reason_ru: string }[] };

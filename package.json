@@ -5,6 +5,7 @@
   "packageManager": "pnpm@10.15.0",
   "scripts": {
     "dev:web": "pnpm --filter @akim5h/web dev",
-    "build:web": "pnpm --filter @akim5h/web build"
+    "build:web": "pnpm --filter @akim5h/web build",
+    "design": "node scripts/check-design.mjs"
   }
 }

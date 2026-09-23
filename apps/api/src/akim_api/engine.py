@@ -15,52 +15,91 @@ RULES = CATALOG["rules"]
 
 
 class ScenarioError(ValueError):
-    def __init__(self, code: str, message: str):
+    def __init__(self, code: str, message: str, details: dict[str, Any] | None = None):
         super().__init__(message)
         self.code = code
         self.message = message
+        self.details = details or {}
 
 
 def validate(decisions: list[dict], *, final: bool = False) -> None:
     count = RULES["required_decision_count"]
     if len(decisions) > count or (final and len(decisions) != count):
-        raise ScenarioError("wrong_decision_count", f"Для симуляции нужно ровно {count} решений.")
+        raise ScenarioError(
+            "wrong_decision_count",
+            f"Для симуляции нужно ровно {count} решений.",
+            {"required": count, "received": len(decisions)},
+        )
     ids = [decision["initiative_id"] for decision in decisions]
     if len(set(ids)) != len(ids):
-        raise ScenarioError("duplicate_initiative", "Каждую инициативу можно выбрать только один раз.")
+        duplicate = next(item for item, total in Counter(ids).items() if total > 1)
+        raise ScenarioError(
+            "duplicate_initiative", "Каждую инициативу можно выбрать только один раз.",
+            {"initiative_id": duplicate},
+        )
     domains: Counter = Counter()
     spent = 0
     for decision in decisions:
         measure = MEASURES.get(decision["initiative_id"])
         if measure is None:
-            raise ScenarioError("unknown_initiative", "Этой инициативы нет в каталоге.")
+            raise ScenarioError(
+                "unknown_initiative", "Этой инициативы нет в каталоге.",
+                {"initiative_id": decision["initiative_id"]},
+            )
         district = decision.get("district_id")
         if measure["scope"] == "district":
             if district is None:
-                raise ScenarioError("district_required", "Выберите район для инициативы.")
+                raise ScenarioError(
+                    "district_required", "Выберите район для инициативы.",
+                    {"initiative_id": measure["id"]},
+                )
             if district not in DISTRICTS:
-                raise ScenarioError("unknown_district", "Выберите район из списка.")
+                raise ScenarioError(
+                    "unknown_district", "Выберите район из списка.",
+                    {"initiative_id": measure["id"], "district_id": district},
+                )
         elif district is not None:
-            raise ScenarioError("district_not_allowed", "Городская мера применяется ко всем районам.")
+            raise ScenarioError(
+                "district_not_allowed", "Городская мера применяется ко всем районам.",
+                {"initiative_id": measure["id"]},
+            )
         spent += measure["cost"]
         domains[measure["domain"]] += 1
     if spent > CITY["budget"]:
-        raise ScenarioError("budget_exceeded", f"Не хватает {spent - CITY['budget']} ед. бюджета.")
-    if any(count > RULES["max_per_domain"] for count in domains.values()):
-        raise ScenarioError("domain_limit", "Можно выбрать не более 2 инициатив одного направления.")
+        raise ScenarioError(
+            "budget_exceeded", f"Не хватает {spent - CITY['budget']} ед. бюджета.",
+            {"spent": spent, "budget": CITY["budget"], "over": spent - CITY["budget"]},
+        )
+    over_limit = next(
+        ((domain, total) for domain, total in domains.items()
+         if total > RULES["max_per_domain"]),
+        None,
+    )
+    if over_limit:
+        domain, total = over_limit
+        raise ScenarioError(
+            "domain_limit", "Можно выбрать не более 2 инициатив одного направления.",
+            {"domain": domain, "count": total, "limit": RULES["max_per_domain"]},
+        )
     by_id = {decision["initiative_id"]: decision for decision in decisions}
     for pair in RULES["incompatible_pairs"]:
         first, second = pair["initiatives"]
         if first not in by_id or second not in by_id:
             continue
         if pair["scope"] == "citywide" or by_id[first].get("district_id") == by_id[second].get("district_id"):
-            raise ScenarioError("incompatible_initiatives", pair["reason_ru"])
+            raise ScenarioError(
+                "incompatible_initiatives", pair["reason_ru"],
+                {"initiatives": [first, second], "scope": pair["scope"]},
+            )
 
 
 def _calculate(decisions: list[dict]) -> dict[str, Any]:
     districts = deepcopy(CITY["districts"])
     by_district = {district["id"]: district for district in districts}
     contributions = []
+    for district in districts:
+        district["district_id"] = district["id"]
+        district["before"] = deepcopy(district["indicators"])
     for decision in decisions:
         measure = MEASURES[decision["initiative_id"]]
         factor = (CITY["horizon_quarters"] - measure["lag_quarters"]) / CITY["horizon_quarters"]
@@ -69,7 +108,14 @@ def _calculate(decisions: list[dict]) -> dict[str, Any]:
         for district in targets:
             for indicator, effect in effects.items():
                 district["indicators"][indicator] += effect
-        contributions.append({**decision, "name_ru": measure["name_ru"], "cost": measure["cost"], "realized_effects": effects})
+        contributions.append({
+            "initiative_id": measure["id"],
+            "district_id": decision.get("district_id"),
+            "name_ru": measure["name_ru"],
+            "domain": measure["domain"],
+            "cost": measure["cost"],
+            "realized_effects": effects,
+        })
     active_synergies = []
     by_id = {decision["initiative_id"]: decision for decision in decisions}
     for synergy in RULES["synergies"]:
@@ -77,7 +123,12 @@ def _calculate(decisions: list[dict]) -> dict[str, Any]:
         if first in by_id and second in by_id:
             district_id = by_id[first]["district_id"]
             by_district[district_id]["indicators"][synergy["indicator"]] += synergy["value"]
-            active_synergies.append({**synergy, "district_id": district_id})
+            active_synergies.append({
+                "initiatives": synergy["initiatives"],
+                "district_id": district_id,
+                "indicator": synergy["indicator"],
+                "value": synergy["value"],
+            })
     critical_indicators = []
     for district in districts:
         for key, value in district["indicators"].items():
@@ -87,9 +138,11 @@ def _calculate(decisions: list[dict]) -> dict[str, Any]:
         district["score"] = sum(CITY["indicator_weights"][key] * value for key, value in district["indicators"].items())
         district["baseline_score"] = CITY["baseline"]["district_scores"][district["id"]]
         district["delta"] = round(district["score"] - district["baseline_score"], 4)
+        district["after"] = deepcopy(district["indicators"])
     city_score = sum(district["population_share"] * district["score"] for district in districts)
     weakest = min(districts, key=lambda district: district["score"])
     score = 0.7 * city_score + 0.3 * weakest["score"] - len(critical_indicators)
+    displayed_score = round(score, 2)
     spent = sum(MEASURES[decision["initiative_id"]]["cost"] for decision in decisions)
     domain_metrics = {}
     for domain in dict.fromkeys(item["domain"] for item in CITY["indicators"]):
@@ -98,10 +151,10 @@ def _calculate(decisions: list[dict]) -> dict[str, Any]:
         domain_metrics[domain] = round(sum(district["population_share"] * sum(district["indicators"][code] * CITY["indicator_weights"][code] for code in codes) / weight for district in districts), 4)
     return {
         "budget": {"total": CITY["budget"], "spent": spent, "remaining": CITY["budget"] - spent},
-        "score": round(score, 4),
+        "score": displayed_score,
         "baseline_score": CITY["baseline"]["astana_quality_of_life_score"],
-        "score_delta": round(score - BASELINE_RAW_SCORE, 4),
-        "city_score": round(city_score, 4),
+        "score_delta": round(displayed_score - CITY["baseline"]["astana_quality_of_life_score"], 2),
+        "city_score": round(city_score, 2),
         "weakest_district": {"district_id": weakest["id"], "score": round(weakest["score"], 4)},
         "critical_pairs": len(critical_indicators),
         "critical_indicators": critical_indicators,
@@ -110,9 +163,6 @@ def _calculate(decisions: list[dict]) -> dict[str, Any]:
         "initiative_contributions": contributions,
         "synergies": active_synergies,
     }
-
-
-BASELINE_RAW_SCORE = 0.7 * sum(district["population_share"] * CITY["baseline"]["district_scores"][district["id"]] for district in CITY["districts"]) + 0.3 * min(CITY["baseline"]["district_scores"].values()) - CITY["baseline"]["critical_pairs"]
 
 
 def availability(decisions: list[dict]) -> dict:

@@ -160,6 +160,42 @@
       "score": 52.9625
     }
   ],
+  "decisions": [
+    {
+      "initiative_id": "M7",
+      "district_id": "nura",
+      "name_ru": "Школа + детсад (модульное строительство)",
+      "domain": "social",
+      "cost": 24
+    },
+    {
+      "initiative_id": "M8",
+      "district_id": "nura",
+      "name_ru": "Центр семейного здоровья / поликлиника",
+      "domain": "social",
+      "cost": 20
+    },
+    {
+      "initiative_id": "M10",
+      "district_id": "nura",
+      "name_ru": "Освещение и камеры (расширение Safe City)",
+      "domain": "safety",
+      "cost": 12
+    },
+    {
+      "initiative_id": "M12",
+      "name_ru": "Единая цифровая платформа обращений",
+      "domain": "services",
+      "cost": 14
+    },
+    {
+      "initiative_id": "M5",
+      "district_id": "saryarka",
+      "name_ru": "Перевод частного сектора на чистое топливо",
+      "domain": "ecology",
+      "cost": 25
+    }
+  ],
   "initiative_contributions": [
     {
       "initiative_id": "M7",
@@ -197,43 +233,6 @@
         "E2": 8.75,
         "C1": 2.5
       }
-    }
-  ],
-  "decisions": [
-    {
-      "initiative_id": "M7",
-      "district_id": "nura",
-      "name_ru": "Школа + детсад (модульное строительство)",
-      "domain": "social",
-      "cost": 24
-    },
-    {
-      "initiative_id": "M8",
-      "district_id": "nura",
-      "name_ru": "Центр семейного здоровья / поликлиника",
-      "domain": "social",
-      "cost": 20
-    },
-    {
-      "initiative_id": "M10",
-      "district_id": "nura",
-      "name_ru": "Освещение и камеры (расширение Safe City)",
-      "domain": "safety",
-      "cost": 12
-    },
-    {
-      "initiative_id": "M12",
-      "district_id": null,
-      "name_ru": "Единая цифровая платформа обращений",
-      "domain": "services",
-      "cost": 14
-    },
-    {
-      "initiative_id": "M5",
-      "district_id": "saryarka",
-      "name_ru": "Перевод частного сектора на чистое топливо",
-      "domain": "ecology",
-      "cost": 25
     }
   ],
   "synergies_applied": [

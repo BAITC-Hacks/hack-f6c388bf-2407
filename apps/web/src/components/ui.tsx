@@ -1,13 +1,13 @@
 import { useEffect, useId } from 'react';
 import type { ButtonHTMLAttributes, ReactNode } from 'react';
-import type { District, DistrictId } from '../lib/types';
+import type { DistrictCatalogItem, DistrictId } from '../lib/types';
 import type { Notice } from '../hooks/useScenario';
 import { Icon } from './Icon';
 
 export function Button({ children, variant = 'secondary', busy = false, className = '', disabled, ...props }: ButtonHTMLAttributes<HTMLButtonElement> & { variant?: 'primary' | 'secondary' | 'ghost'; busy?: boolean }) {
   return <button type="button" className={`button button-${variant} ${className}`} disabled={disabled || busy} aria-busy={busy || undefined} {...props}>{busy && <span className="spinner" aria-hidden="true"/>}{children}</button>;
 }
-export function DistrictSelect({ districts, value, onChange, disabled, options, label = 'Район' }: { districts: District[]; value: DistrictId | ''; onChange: (value: DistrictId) => void; disabled?: boolean; options?: Record<string, string | null>; label?: string }) {
+export function DistrictSelect({ districts, value, onChange, disabled, options, label = 'Район' }: { districts: DistrictCatalogItem[]; value: DistrictId | ''; onChange: (value: DistrictId) => void; disabled?: boolean; options?: Record<string, string | null>; label?: string }) {
   const id = useId();
   return <div className="district-select"><label htmlFor={id}>{label}</label><div><Icon name="pin" size={15}/><select id={id} value={value} disabled={disabled} onChange={(event) => onChange(event.target.value as DistrictId)}>
     <option value="" disabled>Выберите район</option>

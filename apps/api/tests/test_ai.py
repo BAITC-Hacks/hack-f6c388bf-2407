@@ -155,6 +155,7 @@ class ContractTests(unittest.TestCase):
                 Draft202012Validator({"$ref": f"#/components/schemas/{name}",
                                       "components": spec["components"]}).validate(load(filename))
         catalog_schema = spec["paths"]["/api/v1/scenario/catalog"]["get"]["responses"]["200"]["content"]["application/json"]["schema"]
+        catalog_schema = {**catalog_schema, "components": spec["components"]}
         Draft202012Validator(catalog_schema).validate(load("catalog.json"))
         ScenarioInput.model_validate(load("ai_input.json"))
         actual = AIAnalysis.model_json_schema()
@@ -177,6 +178,7 @@ class ContractTests(unittest.TestCase):
         self.assertEqual(result["score_delta"], 3.98)
         without = load("score_success_with_ai.json")
         without["ai_analysis"] = None
+        without["ai_status"] = "disabled"
         self.assertEqual(result, without)
 
     def test_settings_env_priority_and_secret_masking(self):

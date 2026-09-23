@@ -1,6 +1,82 @@
 {
+  "city": "Astana",
+  "currency": "условные единицы",
   "budget": 100,
   "horizon_quarters": 8,
+  "indicators": [
+    {
+      "code": "T1",
+      "domain": "transport",
+      "name_ru": "Разгрузка дорог",
+      "description_ru": "100 = нет пробок в час пик; 0 = дороги стоят"
+    },
+    {
+      "code": "T2",
+      "domain": "transport",
+      "name_ru": "Доступность общественного транспорта",
+      "description_ru": "100 = жители в 500 м от остановки с интервалом не более 10 минут"
+    },
+    {
+      "code": "E1",
+      "domain": "ecology",
+      "name_ru": "Озеленение",
+      "description_ru": "100 = не менее 20 м² зелени на жителя"
+    },
+    {
+      "code": "E2",
+      "domain": "ecology",
+      "name_ru": "Качество воздуха",
+      "description_ru": "100 = зимой AQI не выше 50; 0 = хронический смог"
+    },
+    {
+      "code": "S1",
+      "domain": "social",
+      "name_ru": "Школы и детсады",
+      "description_ru": "100 = норматив потребности выполнен, нет второй смены"
+    },
+    {
+      "code": "S2",
+      "domain": "social",
+      "name_ru": "Поликлиники и первичная медпомощь",
+      "description_ru": "100 = норматив на жителя выполнен полностью"
+    },
+    {
+      "code": "B1",
+      "domain": "safety",
+      "name_ru": "Безопасность улиц",
+      "description_ru": "100 = освещение и камеры везде, минимум происшествий"
+    },
+    {
+      "code": "B2",
+      "domain": "safety",
+      "name_ru": "Безопасность дорожного движения",
+      "description_ru": "100 = минимум ДТП с пострадавшими"
+    },
+    {
+      "code": "C1",
+      "domain": "services",
+      "name_ru": "Надёжность ЖКХ",
+      "description_ru": "100 = нет аварий отопления и воды за год"
+    },
+    {
+      "code": "C2",
+      "domain": "services",
+      "name_ru": "Скорость решения обращений жителей",
+      "description_ru": "100 = все обращения закрыты в срок"
+    }
+  ],
+  "indicator_weights": {
+    "T1": 0.1,
+    "T2": 0.1,
+    "E1": 0.09,
+    "E2": 0.11,
+    "S1": 0.11,
+    "S2": 0.11,
+    "B1": 0.09,
+    "B2": 0.09,
+    "C1": 0.1,
+    "C2": 0.1
+  },
   "districts": [
     {
       "id": "esil",
@@ -93,68 +169,80 @@
       }
     }
   ],
-  "indicators": [
-    {
-      "code": "T1",
-      "domain": "transport",
-      "name_ru": "Разгрузка дорог",
-      "description_ru": "100 = нет пробок в час пик; 0 = дороги стоят"
+  "baseline": {
+    "district_scores": {
+      "esil": 62.99,
+      "almaty": 57.06,
+      "saryarka": 54.65,
+      "baikonur": 56.63,
+      "nura": 49.18
     },
-    {
-      "code": "T2",
-      "domain": "transport",
-      "name_ru": "Доступность общественного транспорта",
-      "description_ru": "100 = жители в 500 м от остановки с интервалом не более 10 минут"
-    },
-    {
-      "code": "E1",
-      "domain": "ecology",
-      "name_ru": "Озеленение",
-      "description_ru": "100 = не менее 20 м² зелени на жителя"
-    },
-    {
-      "code": "E2",
-      "domain": "ecology",
-      "name_ru": "Качество воздуха",
-      "description_ru": "100 = зимой AQI не выше 50; 0 = хронический смог"
-    },
-    {
-      "code": "S1",
-      "domain": "social",
-      "name_ru": "Школы и детсады",
-      "description_ru": "100 = норматив потребности выполнен, нет второй смены"
-    },
-    {
-      "code": "S2",
-      "domain": "social",
-      "name_ru": "Поликлиники и первичная медпомощь",
-      "description_ru": "100 = норматив на жителя выполнен полностью"
-    },
-    {
-      "code": "B1",
-      "domain": "safety",
-      "name_ru": "Безопасность улиц",
-      "description_ru": "100 = освещение и камеры везде, минимум происшествий"
-    },
-    {
-      "code": "B2",
-      "domain": "safety",
-      "name_ru": "Безопасность дорожного движения",
-      "description_ru": "100 = минимум ДТП с пострадавшими"
-    },
-    {
-      "code": "C1",
-      "domain": "services",
-      "name_ru": "Надёжность ЖКХ",
-      "description_ru": "100 = нет аварий отопления и воды за год"
-    },
-    {
-      "code": "C2",
-      "domain": "services",
-      "name_ru": "Скорость решения обращений жителей",
-      "description_ru": "100 = все обращения закрыты в срок"
-    }
-  ],
+    "weighted_city_score": 56.86,
+    "critical_pairs": 2,
+    "astana_quality_of_life_score": 52.56
+  },
+  "rules": {
+    "required_decision_count": 5,
+    "max_per_domain": 2,
+    "unique_initiatives": true,
+    "budget_must_not_be_exceeded": true,
+    "remaining_budget_bonus": 0,
+    "incompatible_pairs": [
+      {
+        "initiatives": [
+          "M1",
+          "M3"
+        ],
+        "scope": "citywide",
+        "reason_ru": "Выбрать можно либо BRT, либо ЛРТ."
+      },
+      {
+        "initiatives": [
+          "M4",
+          "M7"
+        ],
+        "scope": "same_district",
+        "reason_ru": "Парк и школа конкурируют за участок."
+      },
+      {
+        "initiatives": [
+          "M5",
+          "M13"
+        ],
+        "scope": "same_district",
+        "reason_ru": "Меры дублируют программу в одном районе."
+      }
+    ],
+    "synergies": [
+      {
+        "initiatives": [
+          "M1",
+          "M2"
+        ],
+        "indicator": "T1",
+        "value": 2,
+        "district_rule": "district_of_first_initiative"
+      },
+      {
+        "initiatives": [
+          "M10",
+          "M12"
+        ],
+        "indicator": "B1",
+        "value": 2,
+        "district_rule": "district_of_first_initiative"
+      },
+      {
+        "initiatives": [
+          "M5",
+          "M6"
+        ],
+        "indicator": "E2",
+        "value": 2,
+        "district_rule": "district_of_first_initiative"
+      }
+    ]
+  },
   "initiatives": [
     {
       "id": "M1",
@@ -325,66 +413,359 @@
       }
     }
   ],
-  "rules": {
-    "required_decision_count": 5,
-    "max_per_domain": 2,
-    "unique_initiatives": true,
-    "budget_must_not_be_exceeded": true,
-    "remaining_budget_bonus": 0,
-    "incompatible_pairs": [
+  "baseline_result": {
+    "budget": {
+      "total": 100,
+      "spent": 0,
+      "remaining": 100
+    },
+    "baseline_score": 52.56,
+    "score_delta": 0.0,
+    "city_score": 56.86,
+    "weakest_district": {
+      "district_id": "nura",
+      "score": 49.18
+    },
+    "critical_pairs": 2,
+    "critical_indicators": [
       {
-        "initiatives": [
-          "M1",
-          "M3"
-        ],
-        "scope": "citywide",
-        "reason_ru": "Выбрать можно либо BRT, либо ЛРТ."
+        "district_id": "nura",
+        "indicator": "S1",
+        "value": 38
       },
       {
-        "initiatives": [
-          "M4",
-          "M7"
-        ],
-        "scope": "same_district",
-        "reason_ru": "Парк и школа конкурируют за участок."
-      },
-      {
-        "initiatives": [
-          "M5",
-          "M13"
-        ],
-        "scope": "same_district",
-        "reason_ru": "Меры дублируют программу в одном районе."
+        "district_id": "nura",
+        "indicator": "S2",
+        "value": 35
       }
     ],
-    "synergies": [
+    "districts": [
       {
-        "initiatives": [
-          "M1",
-          "M2"
-        ],
-        "indicator": "T1",
-        "value": 2,
-        "district_rule": "district_of_first_initiative"
+        "id": "esil",
+        "name_ru": "Есиль",
+        "population_share": 0.27,
+        "profile_ru": "Богатый район, но есть пробки на мостах и переполненные школы.",
+        "indicators": {
+          "T1": 45,
+          "T2": 62,
+          "E1": 68,
+          "E2": 72,
+          "S1": 48,
+          "S2": 55,
+          "B1": 78,
+          "B2": 60,
+          "C1": 75,
+          "C2": 70
+        },
+        "district_id": "esil",
+        "before": {
+          "T1": 45,
+          "T2": 62,
+          "E1": 68,
+          "E2": 72,
+          "S1": 48,
+          "S2": 55,
+          "B1": 78,
+          "B2": 60,
+          "C1": 75,
+          "C2": 70
+        },
+        "score": 62.99,
+        "baseline_score": 62.99,
+        "delta": 0.0,
+        "after": {
+          "T1": 45,
+          "T2": 62,
+          "E1": 68,
+          "E2": 72,
+          "S1": 48,
+          "S2": 55,
+          "B1": 78,
+          "B2": 60,
+          "C1": 75,
+          "C2": 70
+        }
       },
       {
-        "initiatives": [
-          "M10",
-          "M12"
-        ],
-        "indicator": "B1",
-        "value": 2,
-        "district_rule": "district_of_first_initiative"
+        "id": "almaty",
+        "name_ru": "Алматы",
+        "population_share": 0.24,
+        "profile_ru": "Старый жилой фонд и пробки.",
+        "indicators": {
+          "T1": 40,
+          "T2": 75,
+          "E1": 50,
+          "E2": 55,
+          "S1": 60,
+          "S2": 65,
+          "B1": 62,
+          "B2": 52,
+          "C1": 50,
+          "C2": 60
+        },
+        "district_id": "almaty",
+        "before": {
+          "T1": 40,
+          "T2": 75,
+          "E1": 50,
+          "E2": 55,
+          "S1": 60,
+          "S2": 65,
+          "B1": 62,
+          "B2": 52,
+          "C1": 50,
+          "C2": 60
+        },
+        "score": 57.06,
+        "baseline_score": 57.06,
+        "delta": 0.0,
+        "after": {
+          "T1": 40,
+          "T2": 75,
+          "E1": 50,
+          "E2": 55,
+          "S1": 60,
+          "S2": 65,
+          "B1": 62,
+          "B2": 52,
+          "C1": 50,
+          "C2": 60
+        }
       },
       {
-        "initiatives": [
-          "M5",
-          "M6"
-        ],
-        "indicator": "E2",
-        "value": 2,
-        "district_rule": "district_of_first_initiative"
+        "id": "saryarka",
+        "name_ru": "Сарыарка",
+        "population_share": 0.2,
+        "profile_ru": "Смог от частного сектора и недостаток озеленения.",
+        "indicators": {
+          "T1": 50,
+          "T2": 70,
+          "E1": 42,
+          "E2": 40,
+          "S1": 62,
+          "S2": 68,
+          "B1": 58,
+          "B2": 55,
+          "C1": 45,
+          "C2": 55
+        },
+        "district_id": "saryarka",
+        "before": {
+          "T1": 50,
+          "T2": 70,
+          "E1": 42,
+          "E2": 40,
+          "S1": 62,
+          "S2": 68,
+          "B1": 58,
+          "B2": 55,
+          "C1": 45,
+          "C2": 55
+        },
+        "score": 54.65,
+        "baseline_score": 54.65,
+        "delta": 0.0,
+        "after": {
+          "T1": 50,
+          "T2": 70,
+          "E1": 42,
+          "E2": 40,
+          "S1": 62,
+          "S2": 68,
+          "B1": 58,
+          "B2": 55,
+          "C1": 45,
+          "C2": 55
+        }
+      },
+      {
+        "id": "baikonur",
+        "name_ru": "Байконур",
+        "population_share": 0.13,
+        "profile_ru": "Средние показатели без выраженных перекосов.",
+        "indicators": {
+          "T1": 52,
+          "T2": 68,
+          "E1": 55,
+          "E2": 50,
+          "S1": 58,
+          "S2": 60,
+          "B1": 52,
+          "B2": 58,
+          "C1": 55,
+          "C2": 58
+        },
+        "district_id": "baikonur",
+        "before": {
+          "T1": 52,
+          "T2": 68,
+          "E1": 55,
+          "E2": 50,
+          "S1": 58,
+          "S2": 60,
+          "B1": 52,
+          "B2": 58,
+          "C1": 55,
+          "C2": 58
+        },
+        "score": 56.63,
+        "baseline_score": 56.63,
+        "delta": 0.0,
+        "after": {
+          "T1": 52,
+          "T2": 68,
+          "E1": 55,
+          "E2": 50,
+          "S1": 58,
+          "S2": 60,
+          "B1": 52,
+          "B2": 58,
+          "C1": 55,
+          "C2": 58
+        }
+      },
+      {
+        "id": "nura",
+        "name_ru": "Нура",
+        "population_share": 0.16,
+        "profile_ru": "Самые слабые показатели по социальной инфраструктуре и транспорту.",
+        "indicators": {
+          "T1": 55,
+          "T2": 40,
+          "E1": 45,
+          "E2": 65,
+          "S1": 38,
+          "S2": 35,
+          "B1": 55,
+          "B2": 50,
+          "C1": 60,
+          "C2": 50
+        },
+        "district_id": "nura",
+        "before": {
+          "T1": 55,
+          "T2": 40,
+          "E1": 45,
+          "E2": 65,
+          "S1": 38,
+          "S2": 35,
+          "B1": 55,
+          "B2": 50,
+          "C1": 60,
+          "C2": 50
+        },
+        "score": 49.18,
+        "baseline_score": 49.18,
+        "delta": 0.0,
+        "after": {
+          "T1": 55,
+          "T2": 40,
+          "E1": 45,
+          "E2": 65,
+          "S1": 38,
+          "S2": 35,
+          "B1": 55,
+          "B2": 50,
+          "C1": 60,
+          "C2": 50
+        }
       }
-    ]
+    ],
+    "domain_metrics": {
+      "transport": 55.645,
+      "ecology": 55.5465,
+      "social": 55.415,
+      "safety": 59.16,
+      "services": 58.92
+    },
+    "initiative_contributions": [],
+    "synergies": [],
+    "projected_score": 52.56,
+    "complete": false,
+    "availability": {
+      "M1": {
+        "esil": null,
+        "almaty": null,
+        "saryarka": null,
+        "baikonur": null,
+        "nura": null
+      },
+      "M2": {
+        "citywide": null
+      },
+      "M3": {
+        "esil": null,
+        "almaty": null,
+        "saryarka": null,
+        "baikonur": null,
+        "nura": null
+      },
+      "M4": {
+        "esil": null,
+        "almaty": null,
+        "saryarka": null,
+        "baikonur": null,
+        "nura": null
+      },
+      "M5": {
+        "esil": null,
+        "almaty": null,
+        "saryarka": null,
+        "baikonur": null,
+        "nura": null
+      },
+      "M6": {
+        "citywide": null
+      },
+      "M7": {
+        "esil": null,
+        "almaty": null,
+        "saryarka": null,
+        "baikonur": null,
+        "nura": null
+      },
+      "M8": {
+        "esil": null,
+        "almaty": null,
+        "saryarka": null,
+        "baikonur": null,
+        "nura": null
+      },
+      "M9": {
+        "esil": null,
+        "almaty": null,
+        "saryarka": null,
+        "baikonur": null,
+        "nura": null
+      },
+      "M10": {
+        "esil": null,
+        "almaty": null,
+        "saryarka": null,
+        "baikonur": null,
+        "nura": null
+      },
+      "M11": {
+        "esil": null,
+        "almaty": null,
+        "saryarka": null,
+        "baikonur": null,
+        "nura": null
+      },
+      "M12": {
+        "citywide": null
+      },
+      "M13": {
+        "esil": null,
+        "almaty": null,
+        "saryarka": null,
+        "baikonur": null,
+        "nura": null
+      },
+      "M14": {
+        "citywide": null
+      }
+    },
+    "replacement_availability": {}
   }
 }
