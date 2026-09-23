@@ -190,13 +190,16 @@ components:
         value: { type: number }
     PreviewResult:
       type: object
-      required: [budget, projected_score, baseline_score, score_delta, city_score, weakest_district, critical_pairs, critical_indicators, districts, domain_metrics, synergies, complete, availability, replacement_availability]
+      required: [budget, projected_score, baseline_score, score_delta, city_score, fairness_index, district_gap, score_breakdown, weakest_district, critical_pairs, critical_indicators, districts, domain_metrics, synergies, complete, availability, replacement_availability, timeline, what_if]
       properties:
         budget: { $ref: '#/components/schemas/Budget' }
         projected_score: { type: number }
         baseline_score: { type: number }
         score_delta: { type: number }
         city_score: { type: number }
+        fairness_index: { type: number, minimum: 0, maximum: 100 }
+        district_gap: { type: number, minimum: 0 }
+        score_breakdown: { type: object }
         weakest_district:
           type: object
           required: [district_id, score]
@@ -211,9 +214,11 @@ components:
         complete: { type: boolean }
         availability: { type: object, additionalProperties: { type: object } }
         replacement_availability: { type: object, additionalProperties: { type: object } }
+        timeline: { type: array, items: { type: object } }
+        what_if: { type: object, additionalProperties: { type: object } }
     ScenarioResult:
       type: object
-      required: [valid, budget, score, baseline_score, score_delta, city_score, weakest_district, critical_pairs, critical_indicators, districts, domain_metrics, initiative_contributions, synergies, ai_analysis, ai_status, model_analysis]
+      required: [valid, budget, score, baseline_score, score_delta, city_score, fairness_index, district_gap, score_breakdown, weakest_district, critical_pairs, critical_indicators, districts, domain_metrics, initiative_contributions, synergies, timeline, optimization, stress_test, strategy_title, ai_analysis, ai_status, model_analysis]
       properties:
         valid: { type: boolean, const: true }
         budget: { $ref: '#/components/schemas/Budget' }
@@ -221,6 +226,9 @@ components:
         baseline_score: { type: number, const: 52.56 }
         score_delta: { type: number }
         city_score: { type: number, description: Population-weighted mean of district scores before weakest-district/critical penalties. }
+        fairness_index: { type: number, minimum: 0, maximum: 100 }
+        district_gap: { type: number, minimum: 0 }
+        score_breakdown: { type: object }
         weakest_district:
           type: object
           required: [district_id, score]
@@ -233,6 +241,10 @@ components:
         domain_metrics: { type: object, additionalProperties: { type: number, minimum: 0, maximum: 100 } }
         initiative_contributions: { type: array, items: { $ref: '#/components/schemas/InitiativeContribution' } }
         synergies: { type: array, items: { $ref: '#/components/schemas/Synergy' } }
+        timeline: { type: array, items: { type: object } }
+        optimization: { type: object }
+        stress_test: { type: object }
+        strategy_title: { type: string }
         ai_status: { type: string, enum: [disabled, available, unavailable] }
         model_analysis: { $ref: '#/components/schemas/AIAnalysis' }
         ai_analysis:

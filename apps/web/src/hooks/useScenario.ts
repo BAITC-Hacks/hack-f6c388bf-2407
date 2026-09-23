@@ -29,6 +29,7 @@ export function useScenario() {
   const [running, setRunning] = useState(false);
   const [runError, setRunError] = useState('');
   const requestRef = useRef<AbortController | null>(null);
+  const demoRunRef = useRef(false);
   const mutationLock = useRef(false);
   const runLock = useRef(false);
   const currentKey = keyFor(decisions);
@@ -125,6 +126,26 @@ export function useScenario() {
       if (!controller.signal.aborted) { setRunning(false); runLock.current = false; }
     }
   }
+  useEffect(() => {
+    if (!demoRunRef.current || !fresh || !previewState?.data.complete || running) return;
+    demoRunRef.current = false;
+    void run();
+  }, [fresh, currentKey, running, previewState]);
+
+  function applyScenario(next: Decision[], text: string) {
+    replaceWithUndo(next, text);
+    window.setTimeout(() => document.getElementById('overview')?.scrollIntoView({ behavior: 'smooth' }), 0);
+  }
+
+  function runDemo() {
+    if (keyFor(demoDecisions) === currentKeyRef.current) {
+      demoRunRef.current = false;
+      void run();
+      return;
+    }
+    demoRunRef.current = true;
+    replaceWithUndo(demoDecisions, 'Деморежим запущен: считаем пять решений и готовим полный разбор.');
+  }
   return {
     catalog, catalogError, retryCatalog: () => setCatalogAttempt((value) => value + 1), decisions,
     preview: previewState?.data ?? catalog?.baseline_result ?? null, fresh,
@@ -133,6 +154,7 @@ export function useScenario() {
     running, runError, run, add, remove, changeDistrict,
     reset: () => replaceWithUndo([], 'Сценарий очищен. Можно начать заново.'),
     loadDemo: () => replaceWithUndo(demoDecisions, 'Пример загружен: пять направлений, 79 ед. бюджета.'),
+    runDemo, applyScenario,
     notice, setNotice, storageFailed,
   };
 }
